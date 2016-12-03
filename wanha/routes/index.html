@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Heatmaps</title>
+    <style>
+        html, body, #map-canvas {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+        #panel {
+            position: absolute;
+            top: 5px;
+            left: 1%;
+
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+        }
+        #slider {
+            text-align: center;
+            margin: 0 auto;
+            width: 100%;
+        }
+        #year {
+            text-align: center;
+        }
+    </style>
+    <script src="../jquery.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization&key=AIzaSyB6xe2QG16aKtfQ5GWITJumKk0F97aF5RA"></script>
+    <script src="routemap.js"></script>
+</head>
+<body>
+
+<div id="map-canvas"></div>
+</body>
+</html>
