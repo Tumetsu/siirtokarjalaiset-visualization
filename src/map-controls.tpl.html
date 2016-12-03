@@ -1,0 +1,30 @@
+<div class="map-controls panel panel-default">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="map-controls-group form-group"
+           v-bind:class="{'has-error' : !validInput}">
+        <label for="yearInput">Vuosi <span class="year-instruction text-muted">(1912 - 1966)</span></label>
+        <input class="form-control"
+               v-model="selectedYear"
+               v-on:change="validateYearInput"
+               v-on:click="inputActivated"
+               id="yearInput"
+               type="number"
+               name="year"
+               min="1912"
+               max="1966" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <label class="animation-label">
+        <input type="checkbox" v-model="animation">
+        Animaatio
+      </label>
+    </div>
+  </div>
+</div>
+

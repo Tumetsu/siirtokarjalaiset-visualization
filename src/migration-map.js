@@ -23,11 +23,23 @@ var MigrationMap = Vue.extend({
     this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
     this.heatmap = new google.maps.visualization.HeatmapLayer({
-      data: new google.maps.MVCArray(this.pointArraysByYear['44'])
+      data: new google.maps.MVCArray(this.pointArraysByYear['1944'])
     });
 
     this.heatmap.set('radius', this.heatmap.get('radius') ? null : 50);
     this.heatmap.setMap(this.map);
+  },
+  methods: {
+    'selectedYear': function (year) {
+      // Change to different year
+      this.heatmap.setMap(null);
+
+      this.heatmap = new google.maps.visualization.HeatmapLayer({
+        data: new google.maps.MVCArray(this.pointArraysByYear[year.toString()]),
+        radius: 50
+      });
+      this.heatmap.setMap(this.map);
+    }
   }
 });
 

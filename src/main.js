@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import MigrationMap from './migration-map.js'
+import MapControls from './map-controls';
 
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-loader';
 import './styles.css'
 
 Vue.config.debug = process.env.NODE_ENV !== 'production';
@@ -9,6 +10,7 @@ Vue.config.debug = process.env.NODE_ENV !== 'production';
 const App = new Vue({
   el: '#app',
   components: {
-    MigrationMap
+    MigrationMap,
+    MapControls
   }
 });
