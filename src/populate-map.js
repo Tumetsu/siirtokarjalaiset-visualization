@@ -11,13 +11,7 @@ export function createPointArraysByYearFromDataset(dataset) {
     let dataOfYear = dataset[year];
 
     pointArraysByYear[year] = flattenDeep(dataOfYear.map(locationEntry => {
-      let points = [];
-      // Dataset tells the count of lat&lon points, so add them repeatedly of said count
-      // to be visualized.
-      times(locationEntry.count, () => {
-        points.push(new google.maps.LatLng(locationEntry["lat"], locationEntry["lon"]))
-      });
-      return points;
+      return {location: new google.maps.LatLng(locationEntry["lat"], locationEntry["lon"]), weight: locationEntry.count};
     }));
   });
 
