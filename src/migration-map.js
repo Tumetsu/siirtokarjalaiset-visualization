@@ -2,6 +2,7 @@ import Vue from 'vue';
 import template from './migration-map.tpl.html';
 import migrationData from '../assets/migrationdata.json';
 import {createPointArraysByYearFromDataset} from './populate-map';
+import mapStyles from './map-styles.json';
 
 var MigrationMap = Vue.extend({
   template: template,
@@ -17,10 +18,17 @@ var MigrationMap = Vue.extend({
     let mapOptions = {
       zoom: 7,
       center: new google.maps.LatLng(62.244747, 25.747218400000065),
-      mapTypeId: google.maps.MapTypeId.SATELLITE
+      mapTypeControlOptions: {
+        mapTypeIds: ['satellite', 'hybrid', 'terrain', 'aubergine']
+      }
     };
 
+    let styledMapType = new google.maps.StyledMapType(mapStyles, {name: 'Tumma'});
+
     this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+    this.map.mapTypes.set('aubergine', styledMapType);
+    this.map.setMapTypeId('aubergine');
 
     this.heatmap = new google.maps.visualization.HeatmapLayer({
       data: new google.maps.MVCArray(this.pointArraysByYear['1944'])
