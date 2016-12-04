@@ -21,6 +21,9 @@ let MigrationMap = Vue.extend({
     }
   },
   mounted: function () {
+    bus.$on('animationToggle', this.animationToggle);
+    bus.$on('selectedYear', this.selectedYear);
+
     // Initialize and set up google maps
     let mapOptions = {
       zoom: 7,

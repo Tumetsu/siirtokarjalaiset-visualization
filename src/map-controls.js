@@ -17,24 +17,23 @@ let MapControls = Vue.extend({
   mounted: function () {
     bus.$on('yearChangeComplete', (year) => {
       this.selectedYear = year;
-    })
+    });
   },
   methods: {
     toggleAnimation: function () {
-      this.$emit('animationToggle', this.animation);
+      bus.$emit('animationToggle', this.animation);
     },
     validateYearInput: function (event) {
       this.validInput = (this.selectedYear >= 1912 && this.selectedYear <= 1966);
       if (this.validInput) {
         //Notify map about new value:
-        this.animationYear = this.selectedYear;
-        this.$emit('selectedYear', this.selectedYear);
+        bus.$emit('selectedYear', this.selectedYear);
       }
     },
     inputActivated: function () {
       // Disable animation
       this.animation = false;
-      this.$emit('animationToggle', this.animation);
+      bus.$emit('animationToggle', this.animation);
     }
   }
 });
