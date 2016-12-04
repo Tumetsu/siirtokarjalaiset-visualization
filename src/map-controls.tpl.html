@@ -21,9 +21,26 @@
   <div class="row">
     <div class="col-md-12">
       <label class="animation-label">
-        <input type="checkbox" v-model="animation">
+        <input type="checkbox" v-model="animation" v-on:change="toggleAnimation">
         Animaatio
       </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+      Muuttoliike paikkakunnille henkilömäärinä vuosilta 1912-1966 perustuen Siirtokarjalaisten tie matrikkelikirjasarjan luettelemiin
+      henkilöiden muuttotietoihin. Selkeät muuttoaallot Karjalasta pois ja takaisin havaittavissa vuosina 1939 - 1945.
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div id="legend">
+        <div id="legendGradient"></div>
+      </div>
     </div>
   </div>
 </div>

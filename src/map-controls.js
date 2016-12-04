@@ -3,34 +3,25 @@
  */
 import Vue from 'vue';
 import template from './map-controls.tpl.html';
+import bus from './bus';
 
 let MapControls = Vue.extend({
   template: template,
   data: function () {
     return {
-      selectedYear: 1944,
-      animationYear: 1944,
+      selectedYear: 1932,
       validInput: true,
       animation: true
     }
   },
   mounted: function () {
-    this.animationInterval = setInterval(this.animateYears, 2000);
-  },
-  destroyed: function () {
-    clearInterval(this.animationInterval);
+    bus.$on('yearChangeComplete', (year) => {
+      this.selectedYear = year;
+    })
   },
   methods: {
-    animateYears: function () {
-      if (this.animation) {
-        this.animationYear += 1;
-        if (this.animationYear > 1966) {
-          this.animationYear = 1912;
-        }
-
-        this.selectedYear = this.animationYear;
-        this.$emit('selectedYear', this.selectedYear);
-      }
+    toggleAnimation: function () {
+      this.$emit('animationToggle', this.animation);
     },
     validateYearInput: function (event) {
       this.validInput = (this.selectedYear >= 1912 && this.selectedYear <= 1966);
@@ -41,7 +32,9 @@ let MapControls = Vue.extend({
       }
     },
     inputActivated: function () {
+      // Disable animation
       this.animation = false;
+      this.$emit('animationToggle', this.animation);
     }
   }
 });
