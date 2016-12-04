@@ -1,5 +1,7 @@
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
   entry: {
@@ -14,6 +16,7 @@ module.exports = {
     loaders: [
       { test: /\.vue$/, loader: 'vue' },
       { test: /\.html$/, exclude: /node_modules/, loader: "html?name=[path][name].[ext]"},
+      { test: /\.json$/, exclude: /node_modules/, loader: "json"},
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel'},
       { test: /\.(png|jpg)$/, loader: 'file' },
       { test: /\.(png|jpg)$/, loader: 'url?limit=10000'},
@@ -30,14 +33,24 @@ module.exports = {
         NODE_ENV: '"production"'
       }
     }),
+    new ExtractTextPlugin('[name].min.css', {
+      allChunks: true
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    }),
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      filename: 'index.html',
+      hash: true
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       }
-    }),
-    new ExtractTextPlugin('[name].min.css', {
-      allChunks: true
     })
+
   ],
   resolve: {
     alias: {

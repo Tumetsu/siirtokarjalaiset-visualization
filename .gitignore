@@ -2,7 +2,7 @@
 node_modules
 .yo-rc.json
 *.log
-
+build/
 
 # Created by https://www.gitignore.io/api/vue,intellij
 
