@@ -1,1 +1,0 @@
-Quick visualization of Siirtokarjalaisten tie book series migration data.
